@@ -19,19 +19,15 @@ class BoardTest < Minitest::Test
                   [' ', ' ', ' ', ' ']], @b.grid
   end
 
-  def test_it_knows_its_coordinates
+  def test_it_has_coordinates
     assert_equal [['A1', 'A2', 'A3', 'A4'],
                   ['B1', 'B2', 'B3', 'B4'],
                   ['C1', 'C2', 'C3', 'C4'],
                   ['D1', 'D2', 'D3', 'D4']], @b.coordinates
   end
 
-  def test_it_prints_out_player_board
-    assert_equal "\n==========\n  1 2 3 4\nA        \nB        \nC        \nD        \n==========", @b.make_player_board
-  end
-
-  def test_it_prints_out_computer_board
-    assert_equal "\n==========\n  1 2 3 4\nA        \nB        \nC        \nD        \n==========", @b.make_computer_board
+  def test_it_prints_out_board
+    assert_nil nil, @b.make_player_board
   end
 
 end

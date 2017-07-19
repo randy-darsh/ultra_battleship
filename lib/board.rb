@@ -2,42 +2,52 @@ require 'pry'
 
 class Board
 
-  attr_reader :grid,
-              :coordinates
+  attr_reader :grid
 
   def initialize
-    @grid = [[' ', ' ', ' ', ' '],
-             [' ', ' ', ' ', ' '],
-             [' ', ' ', ' ', ' '],
-             [' ', ' ', ' ', ' ']]
-    @coordinates = [['A1', 'A2', 'A3', 'A4'],
-                    ['B1', 'B2', 'B3', 'B4'],
-                    ['C1', 'C2', 'C3', 'C4'],
-                    ['D1', 'D2', 'D3', 'D4']]
+    @grid = [[false, false, false, false],
+             [false, false, false, false],
+             [false, false, false, false],
+             [false, false, false, false]]
   end
 
-  def make_player_board
-    player_board = "\n"
-    player_board += "==========\n"
-    player_board += "  1 2 3 4\n"
-    player_board += 'A ' + grid[0].join(' ') + "\n"
-    player_board += 'B ' + grid[1].join(' ') + "\n"
-    player_board += 'C ' + grid[2].join(' ') + "\n"
-    player_board += 'D ' + grid[3].join(' ') + "\n"
-    player_board += '=========='
-    p player_board
+  # def make_board
+  #   player_board = "\n"
+  #   player_board += "==========\n"
+  #   player_board += "  1 2 3 4\n"
+  #   player_board += 'A ' + grid[0].join(' ') + "\n"
+  #   player_board += 'B ' + grid[1].join(' ') + "\n"
+  #   player_board += 'C ' + grid[2].join(' ') + "\n"
+  #   player_board += 'D ' + grid[3].join(' ') + "\n"
+  #   player_board += '=========='
+  #   puts player_board
+  # end
+
+  def character_to_index(position)
+    character = position[0]
+    character_selection = {"A" => 0, "B" => 1, "C" => 2, "D" => 3}
+    character_selection[character]
   end
 
-  def make_computer_board
-    computer_board = "\n"
-    computer_board += "==========\n"
-    computer_board += "  1 2 3 4\n"
-    computer_board += 'A ' + grid[0].join(' ') + "\n"
-    computer_board += 'B ' + grid[1].join(' ') + "\n"
-    computer_board += 'C ' + grid[2].join(' ') + "\n"
-    computer_board += 'D ' + grid[3].join(' ') + "\n"
-    computer_board += '=========='
-    p computer_board
+  def number_to_index(position)
+    number = position[1]
+    number_selection = {"1" => 0, "2" => 1, "3" => 2, "4" => 3}
+    number_selection[number]
+  end
+
+  def convert_to_coordinates(position)
+    coordinates = []
+    coordinates << character_to_index(position)
+    coordinates << number_to_index(position)
+    coordinates
+  end
+
+  def place_ship(user_input)
+    positions = user_input.split(" ")
+    position_1 = convert_to_coordinates(positions[0])
+    position_2 = convert_to_coordinates(positions[1])
+    grid[position_1[0]][position_1[1]] = true
+    grid[position_2[0]][position_2[1]] = true
   end
 
 end

@@ -1,3 +1,4 @@
+require_relative 'board'
 require 'pry'
 
 class Introduction
@@ -17,13 +18,19 @@ class Introduction
     if (response != 'p') && (response != 'q') && (response != 'i')
       puts "Please choose (p), (q) or (i)"
     elsif response == 'p'
-      abort # Board.new
+      print "\nI have laid out my ships on the grid.
+You now need to layout your two ships.
+The first is two units long and the
+second is three units long.
+The grid has A1 at the top left and D4 at the bottom right.\n
+Enter the squares for the two-unit ship:"
     elsif response == 'q'
       abort
     elsif response == 'i'
       instructions
+    elsif response == ''
     end
-    self.get_player_response
+    get_player_response
   end
 
   def self.instructions

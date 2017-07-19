@@ -7,12 +7,9 @@ class Battleship
               :board
 
   def initialize
-    @intro = Introduction.new
-    @board = Board.new
-  end
-
-  def method_name
-
+    @intro = Introduction.intro
+    @player_board = Board.new
+    @computer_board = Board.new
   end
 
 end
