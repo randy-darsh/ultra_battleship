@@ -19,15 +19,32 @@ class BoardTest < Minitest::Test
                   [' ', ' ', ' ', ' ']], @b.grid
   end
 
-  def test_it_has_coordinates
-    assert_equal [['A1', 'A2', 'A3', 'A4'],
-                  ['B1', 'B2', 'B3', 'B4'],
-                  ['C1', 'C2', 'C3', 'C4'],
-                  ['D1', 'D2', 'D3', 'D4']], @b.coordinates
+  def test_it_prints_out_board
+    assert_nil nil, @b.make_board
   end
 
-  def test_it_prints_out_board
-    assert_nil nil, @b.make_player_board
+  def test_it_converts_first_character_to_index
+    assert_equal 0, @b.character_to_index("A1")
+  end
+
+  def test_it_converts_second_number_to_index
+    assert_equal 2, @b.number_to_index("A3")
+  end
+
+  def test_it_can_convert_both_to_coordinates
+    assert_equal [1, 3], @b.convert_to_coordinates("B4")
+  end
+
+  def test_it_can_place_the_first_point_of_the_ship
+    assert_equal "S", @b.place_ship("B4")
+  end
+
+  def test_it_changes_the_grid
+    @b.place_ship("B4")
+    assert_equal [[" ", " ", " ", " "],
+                  [" ", " ", " ", "S"],
+                  [" ", " ", " ", " "],
+                  [" ", " ", " ", " "]], @b.grid
   end
 
 end
